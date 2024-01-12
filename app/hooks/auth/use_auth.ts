@@ -4,6 +4,9 @@ import { AuthStatus } from "../../types/auth/auth_status";
 import { apiFetch } from "../../utils/basic_fetch";
 import { Account } from "../../types/auth/account";
 import { Token } from "../../types/auth/token";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NavigateFunction } from "react-router-native";
+import Toast from "react-native-toast-message";
 
 export function useAuth() {
   const { account, setAccount } = useAccountStore();
@@ -28,17 +31,23 @@ export function useAuth() {
   }, [setAccount]);
 
   const login = useCallback(
-    (email: string, password: string) => {
+    (email: string, password: string, navigate: NavigateFunction) => {
       apiFetch<Token>("/auth/login", { json: { email, password } })
-        .then((data) =>
-          // setCookie("token", data.token, {
-          //   expires: new Date(data.expires_at),
-          // })
-          console.log("TODO set cookie")
-        )
+        .then(async (data) => {
+          await AsyncStorage.setItem("token", data.token);
+        })
         .then(authenticate)
-        .then(() => window.location.assign("/"))
-        .catch(() => console.log("TODO error"));
+        .then(() => {
+          navigate("/restaurants");
+        })
+        .catch((e) => {
+          console.log(e);
+          Toast.show({
+            type: "error",
+            text1: "Error",
+            text2: "Invalid credentials",
+          });
+        });
     },
     [authenticate]
   );
@@ -60,22 +69,29 @@ export function useAuth() {
           password_confirmation: passwordConfirmation,
         },
       })
-        .then((data) =>
-          // setCookie("token", data.token, {
-          //   expires: new Date(data.expires_at),
-          // })
-          console.log("TODO set cookie")
+        .then(
+          async (data) =>
+            // setCookie("token", data.token, {
+            //   expires: new Date(data.expires_at),
+            // })
+            await AsyncStorage.setItem("token", data.token)
         )
         .then(authenticate)
         .then(() => window.location.assign("/"))
-        .catch(() => console.log("TODO error"));
+        .catch(() =>
+          Toast.show({
+            type: "error",
+            text1: "Error",
+            text2: "Something went wrong",
+          })
+        );
     },
     [authenticate]
   );
 
   const logout = useCallback(() => {
     apiFetch<Account>("/auth/logout", { method: "DELETE" })
-      .then(() => console.log("TODO remove cookie"))
+      .then(async () => await AsyncStorage.setItem("token", ""))
       .then(() => setAccount(null))
       .then(() => window.location.assign("/"));
   }, [setAccount]);
