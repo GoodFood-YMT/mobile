@@ -14,7 +14,9 @@ export function Button(props: ButtonProps) {
       className="flex items-center justify-center h-10 px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90"
       {...props}
     >
-      <StyledText className="text-primary-foreground">{props.title}</StyledText>
+      <StyledText className="text-primary-foreground font-medium">
+        {props.title}
+      </StyledText>
     </StyledPressable>
   );
 }
