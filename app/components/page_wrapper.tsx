@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { Logo } from "./identity/logo";
 import { useAccountStore } from "../stores/account_store";
+import { NavigationButton } from "./ui/navigation_button";
 
 const StyledView = styled(View);
 const StyledImageBackground = styled(ImageBackground);
@@ -66,8 +67,8 @@ export function PageWrapper({ children }: PropsWithChildren) {
         </StyledScrollView>
       </StyledView>
       <StyledView className="h-[100px] bg-white w-screen border-t border-border flex flex-row justify-center items-center pb-2">
-        <Text>Test</Text>
-        <Text>Test</Text>
+        <NavigationButton text="Catalog" icon="grid" route="/" />
+        <NavigationButton text="Cart" icon="basket" route="/" />
       </StyledView>
     </StyledView>
   );
