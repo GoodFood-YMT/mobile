@@ -7,6 +7,8 @@ import {
   TouchableHighlight,
   View,
   Image,
+  Dimensions,
+  ScrollView,
 } from "react-native";
 import { Logo } from "./identity/logo";
 import { useAccountStore } from "../stores/account_store";
@@ -14,12 +16,14 @@ import { useAccountStore } from "../stores/account_store";
 const StyledView = styled(View);
 const StyledImageBackground = styled(ImageBackground);
 const StyledText = styled(Text);
+const StyledScrollView = styled(ScrollView);
 
 export function PageWrapper({ children }: PropsWithChildren) {
   const accountStore = useAccountStore();
+  const windowHeight = Dimensions.get("window").height;
 
   return (
-    <StyledView>
+    <StyledView className="bg-[#F5F7F9]">
       <StyledImageBackground
         source={{
           uri: "https://images.unsplash.com/photo-1589010588553-46e8e7c21788?q=80&w=3060&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -50,7 +54,21 @@ export function PageWrapper({ children }: PropsWithChildren) {
           </StyledView>
         </StyledView>
       </StyledImageBackground>
-      <StyledView className="px-6 py-4">{children}</StyledView>
+      <StyledView
+        className="px-6 py-4"
+        style={{ height: windowHeight - 140 - 100 }}
+      >
+        <StyledScrollView
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
+        >
+          {children}
+        </StyledScrollView>
+      </StyledView>
+      <StyledView className="h-[100px] bg-white w-screen border-t border-border flex flex-row justify-center items-center pb-2">
+        <Text>Test</Text>
+        <Text>Test</Text>
+      </StyledView>
     </StyledView>
   );
 }

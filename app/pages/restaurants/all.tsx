@@ -6,7 +6,6 @@ import { PageWrapper } from "../../components/page_wrapper";
 import { styled } from "nativewind";
 import { ScrollView, View } from "react-native";
 
-const StyledScrollView = styled(ScrollView);
 const StyledView = styled(View);
 
 export function RestaurantsPage() {
@@ -19,20 +18,13 @@ export function RestaurantsPage() {
   return (
     <PageWrapper>
       <PageTitle>Restaurants</PageTitle>
-      <StyledView className="h-full">
-        <StyledScrollView
-          contentContainerStyle={{ paddingBottom: 170 }}
-          showsVerticalScrollIndicator={false}
-          showsHorizontalScrollIndicator={false}
-        >
-          <StyledView className="flex flex-col">
-            {restaurants.data?.pages.map((page) =>
-              page.data.map((restaurant) => (
-                <Restaurant key={restaurant.id} restaurant={restaurant} />
-              ))
-            )}
-          </StyledView>
-        </StyledScrollView>
+
+      <StyledView className="flex flex-col">
+        {restaurants.data?.pages.map((page) =>
+          page.data.map((restaurant) => (
+            <Restaurant key={restaurant.id} restaurant={restaurant} />
+          ))
+        )}
       </StyledView>
     </PageWrapper>
   );
