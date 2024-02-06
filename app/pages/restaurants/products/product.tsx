@@ -1,33 +1,31 @@
-import { useQueryClient } from "@tanstack/react-query";
-import { ImageBackground, Text, View } from "react-native";
-import { useParams } from "react-router-native";
-import { useFetchProductById } from "../../../hooks/catalog/products/use_fetch_product_by_id";
-import { Loader } from "../../../components/loader";
-import { styled } from "nativewind";
 import { Button } from "../../../components/ui/button";
 import { getRestaurantImage } from "../../../utils/get_restaurant_image";
-import { useAddToBasket } from "../../../hooks/basket/use_add_to_basket";
-import { PageWrapper } from "../../../components/page_wrapper";
 import { PageTitle } from "../../../components/page_title";
+import { PageWrapper } from "../../../components/page_wrapper";
+import { ImageBackground, Text, View } from "react-native";
+import { styled } from "nativewind";
+import { useAddToBasket } from "../../../hooks/basket/use_add_to_basket";
+import { useFetchProductById } from "../../../hooks/catalog/products/use_fetch_product_by_id";
+import { useParams } from "react-router-native";
+import { useQueryClient } from "@tanstack/react-query";
 
-const StyledView = styled(View);
 const StyledImageBackground = styled(ImageBackground);
 const StyledText = styled(Text);
+const StyledView = styled(View);
 
 export default function ProductPage() {
   const { productId } = useParams();
+  const addToBasket = useAddToBasket();
+  const queryClient = useQueryClient();
+
   if (!productId) return;
 
-  const queryClient = useQueryClient();
-  const addToBasket = useAddToBasket();
   const product = useFetchProductById(productId);
 
   const handleOnAddToBasket = async () => {
     await addToBasket.mutateAsync({ id: product.data!.id, quantity: 1 });
     await queryClient.invalidateQueries({ queryKey: ["basket"] });
   };
-
-  if (product.isLoading) return <Loader />;
 
   return (
     <PageWrapper>
@@ -40,9 +38,6 @@ export default function ProductPage() {
         <StyledView className="flex flex-col justify-between">
           <StyledView className="flex flex-col gap-2">
             <StyledView className="flex justify-between">
-              <StyledText className="text-lg font-medium tracking-tight">
-                {product.data?.label}
-              </StyledText>
               <StyledText className="text-lg font-medium tracking-tight">
                 {product.data?.price} €
               </StyledText>

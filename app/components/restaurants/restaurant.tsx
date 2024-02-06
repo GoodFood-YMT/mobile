@@ -1,8 +1,8 @@
-import { styled } from "nativewind";
-import { View, Text, ImageBackground, Pressable } from "react-native";
-import Icon from "react-native-vector-icons/SimpleLineIcons";
 import { getRestaurantImage } from "../../utils/get_restaurant_image";
+import Icon from "react-native-vector-icons/SimpleLineIcons";
+import { styled } from "nativewind";
 import { useNavigate } from "react-router-native";
+import { View, Text, ImageBackground, Pressable } from "react-native";
 
 interface RestaurantProps {
   restaurant: {

@@ -1,12 +1,12 @@
-import { Text, View } from "react-native";
+import { Loader } from "../../../components/loader";
+import { PageTitle } from "../../../components/page_title";
+import { PageWrapper } from "../../../components/page_wrapper";
+import Product from "../../../components/products/product";
+import { styled } from "nativewind";
 import { useParams } from "react-router-native";
 import { useFetchInStockProductsByRestaurant } from "../../../hooks/catalog/products/use_fetch_products_by_restaurant";
-import { Loader } from "../../../components/loader";
-import { PageWrapper } from "../../../components/page_wrapper";
-import { PageTitle } from "../../../components/page_title";
-import { styled } from "nativewind";
-import Product from "../../../components/products/product";
 import { useFetchRestaurantById } from "../../../hooks/restaurants/use_fetch_restaurant_by_id";
+import { View } from "react-native";
 
 const StyledView = styled(View);
 
@@ -22,6 +22,7 @@ export default function RestaurantProducts() {
   if (products.isLoading) {
     return <Loader />;
   }
+
   if (restaurant.isLoading) {
     return <Loader />;
   }
