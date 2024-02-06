@@ -4,6 +4,7 @@ import { LoginPage } from "./app/pages/auth/login";
 import { Providers } from "./app/components/providers/providers";
 import { RestaurantsPage } from "./app/pages/restaurants/all";
 import Toast from "react-native-toast-message";
+import { CartPage } from "./app/pages/cart";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
           <Routes>
             <Route path="/" Component={LoginPage} />
             <Route path="/restaurants" Component={RestaurantsPage} />
+            <Route path="/cart" Component={CartPage} />
           </Routes>
 
           <StatusBar />

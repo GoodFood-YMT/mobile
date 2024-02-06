@@ -4,7 +4,7 @@ import { Restaurant } from "../../components/restaurants/restaurant";
 import { PageTitle } from "../../components/page_title";
 import { PageWrapper } from "../../components/page_wrapper";
 import { styled } from "nativewind";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 
 const StyledView = styled(View);
 

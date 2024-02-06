@@ -67,8 +67,8 @@ export function PageWrapper({ children }: PropsWithChildren) {
         </StyledScrollView>
       </StyledView>
       <StyledView className="h-[100px] bg-white w-screen border-t border-border flex flex-row justify-center items-center pb-2">
-        <NavigationButton text="Catalog" icon="grid" route="/" />
-        <NavigationButton text="Cart" icon="basket" route="/" />
+        <NavigationButton text="Catalog" icon="grid" route="/restaurants" />
+        <NavigationButton text="Cart" icon="basket" route="/cart" />
       </StyledView>
     </StyledView>
   );
