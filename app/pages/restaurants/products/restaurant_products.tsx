@@ -32,7 +32,9 @@ export default function RestaurantProducts() {
       <PageTitle>{restaurant.data?.name}</PageTitle>
       <StyledView className="flex flex-col">
         {products.data?.pages.map((page) =>
-          page.data.map((product) => <Product product={product} />)
+          page.data.map((product) => (
+            <Product product={product} key={product.id} />
+          ))
         )}
       </StyledView>
     </PageWrapper>
