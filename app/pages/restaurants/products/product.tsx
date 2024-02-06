@@ -8,6 +8,7 @@ import { useAddToBasket } from "../../../hooks/basket/use_add_to_basket";
 import { useFetchProductById } from "../../../hooks/catalog/products/use_fetch_product_by_id";
 import { useParams } from "react-router-native";
 import { useQueryClient } from "@tanstack/react-query";
+import { Loader } from "../../../components/loader";
 
 const StyledImageBackground = styled(ImageBackground);
 const StyledText = styled(Text);
@@ -21,6 +22,7 @@ export default function ProductPage() {
   if (!productId) return;
 
   const product = useFetchProductById(productId);
+  if (product.isLoading) return <Loader />;
 
   const handleOnAddToBasket = async () => {
     await addToBasket.mutateAsync({ id: product.data!.id, quantity: 1 });
