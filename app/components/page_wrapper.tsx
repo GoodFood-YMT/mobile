@@ -26,9 +26,7 @@ export function PageWrapper({ children }: PropsWithChildren) {
   return (
     <StyledView className="bg-[#F5F7F9]">
       <StyledImageBackground
-        source={{
-          uri: "https://images.unsplash.com/photo-1589010588553-46e8e7c21788?q=80&w=3060&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        }}
+        source={require("../../assets/banner.avif")}
         resizeMode="cover"
         className="aspect-video h-[140px] w-screen"
       >
