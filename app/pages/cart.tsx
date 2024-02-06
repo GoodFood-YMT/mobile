@@ -99,21 +99,22 @@ export function CartPage() {
         <StyledView className="bg-white p-4 shadow-sm">
           <StyledView className="flex h-full flex-col justify-between gap-4">
             <StyledView className="flex flex-col gap-2 overflow-y-auto">
-              <StyledView className="mb-2 flex justify-between">
-                <Button title="Clear" onPress={handleClearBasket} />
+              <StyledView className="flex flex-row justify-end">
+                <StyledView className="mb-2 w-20">
+                  <Button
+                    title="Clear"
+                    onPress={handleClearBasket}
+                    className="bg-transparent border border-border"
+                    textClassName="text-black"
+                  />
+                </StyledView>
               </StyledView>
 
               {basket.data.items.map((product) => (
                 <StyledView
                   key={product.id}
-                  className="grid grid-cols-[1fr,3fr,2fr] gap-2"
+                  className="flex flex-row justify-between"
                 >
-                  <StyledView className="relative aspect-square w-full">
-                    <StyledImage
-                      src={getRestaurantImage(product.label)}
-                      className="w-full h-full object-cover object-center"
-                    />
-                  </StyledView>
                   <StyledView className="flex flex-col gap-2">
                     <StyledText className="text-sm font-medium">
                       {product.label}
@@ -122,25 +123,29 @@ export function CartPage() {
                       {formatToPrice(product.price * product.quantity)} €
                     </StyledText>
                   </StyledView>
-                  <StyledView className="flex items-center">
+                  <StyledView className="flex flex-row items-center">
                     <Button
                       title="-"
+                      className="bg-transparent border border-border"
+                      textClassName="text-black"
                       onPress={() => handleDeleteFromBasket(product.id)}
                     />
-                    <span className="w-[50px] px-2 text-center font-medium">
+                    <StyledText className="w-[50px] px-2 text-center font-medium">
                       {product.quantity}
-                    </span>
+                    </StyledText>
                     <Button
                       title="+"
+                      className="bg-transparent border border-border"
+                      textClassName="text-black"
                       onPress={() => handleAddToBasket(product.id)}
                     />
                   </StyledView>
                 </StyledView>
               ))}
             </StyledView>
-            <StyledView className="flex flex-col gap-2">
-              <StyledView className="flex w-full flex-col gap-4 bg-black bg-opacity-[0.03] p-4">
-                <StyledView className="flex items-center justify-between">
+            <StyledView className="flex flex-col">
+              <StyledView className="flex w-full flex-col bg-stone-50 p-4 mb-4">
+                <StyledView className="flex flex-row items-center justify-between mb-2">
                   <StyledText className="text-xs font-medium">
                     Subtotal
                   </StyledText>
@@ -148,14 +153,14 @@ export function CartPage() {
                     {formatToPrice(subtotal)}€
                   </StyledText>
                 </StyledView>
-                <StyledView className="flex items-center justify-between">
+                <StyledView className="flex flex-row items-center justify-between mb-2">
                   <StyledText className="text-xs font-medium">
                     Shipping & Handling
                   </StyledText>
                   <StyledText className="text-xs">Free</StyledText>
                 </StyledView>
-                <StyledView className="w-full border-b border-black/5"></StyledView>
-                <StyledView className="flex items-center justify-between">
+                <StyledView className="w-full border-b border-black/5 mb-2"></StyledView>
+                <StyledView className="flex flex-row items-center justify-between">
                   <StyledText className="text-sm font-medium">Total</StyledText>
                   <StyledText className="text-sm">
                     {formatToPrice(subtotal)}€
