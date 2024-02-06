@@ -9,28 +9,41 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  Pressable,
 } from "react-native";
 import { Logo } from "./identity/logo";
 import { useAccountStore } from "../stores/account_store";
 import { NavigationButton } from "./ui/navigation_button";
+import { useDrawerStore } from "../stores/drawer_store";
+import { Drawer } from "./drawer";
 
 const StyledView = styled(View);
 const StyledImageBackground = styled(ImageBackground);
 const StyledText = styled(Text);
 const StyledScrollView = styled(ScrollView);
+const StyledPressable = styled(Pressable);
 
 export function PageWrapper({ children }: PropsWithChildren) {
   const accountStore = useAccountStore();
+  const drawerStore = useDrawerStore();
   const windowHeight = Dimensions.get("window").height;
+
+  function handlePress() {
+    drawerStore.toggle();
+  }
 
   return (
     <StyledView className="bg-[#F5F7F9]">
+      <Drawer />
       <StyledImageBackground
         source={require("../../assets/banner.avif")}
         resizeMode="cover"
         className="aspect-video h-[140px] w-screen"
       >
-        <StyledView className="h-full w-screen bg-black/30 flex flex-row justify-between items-center pt-10 px-4">
+        <StyledPressable
+          onPress={handlePress}
+          className="h-full w-screen bg-black/30 flex flex-row justify-between items-center pt-10 px-4"
+        >
           <Logo size={150} color="white" />
           <StyledView className="flex items-center flex-row bg-white p-3">
             <TouchableHighlight style={styles.profileImgContainer}>
@@ -51,7 +64,7 @@ export function PageWrapper({ children }: PropsWithChildren) {
               </StyledText>
             </StyledView>
           </StyledView>
-        </StyledView>
+        </StyledPressable>
       </StyledImageBackground>
       <StyledView
         className="px-6 py-4"
