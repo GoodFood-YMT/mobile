@@ -19,6 +19,8 @@ const fetchDeliveryById = async (id: string) => {
       country: string;
       id: string;
       user_id: string;
+      lat: number;
+      lon: number;
     };
   }>(`/delivery/deliveries/${id}`);
 };

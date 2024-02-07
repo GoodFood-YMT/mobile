@@ -32,12 +32,7 @@ export function OneDelivery() {
 
     takeDelivery.mutate(deliveryId, {
       onSuccess: () => {
-        Toast.show({
-          type: "success",
-          text1: "Delivery taken",
-          visibilityTime: 3000,
-          autoHide: true,
-        });
+        navigate(`/deliveries/${deliveryId}/itinarery`);
         delivery.refetch();
       },
       onError: () => {
@@ -51,10 +46,10 @@ export function OneDelivery() {
     });
   };
 
-  const handleCompleteDelivery = () => {
+  const handleNavigation = () => {
     if (!deliveryId) return;
 
-    navigate(`/deliveries/${deliveryId}/camera`);
+    navigate(`/deliveries/${deliveryId}/itinarery`);
   };
 
   if (delivery.isLoading || order.isLoading) {
@@ -122,8 +117,8 @@ export function OneDelivery() {
       accountStore.account?.id === delivery.data.deliverer_id ? (
         <Button
           className="mt-4"
-          title="Mark as delivered"
-          onPress={handleCompleteDelivery}
+          title="Go to navigation"
+          onPress={handleNavigation}
         />
       ) : null}
     </PageWrapper>
