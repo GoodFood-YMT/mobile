@@ -9,6 +9,7 @@ import RestaurantProducts from "./app/pages/restaurants/products/restaurant_prod
 import ProductPage from "./app/pages/restaurants/products/product";
 import { DeliveriesPage } from "./app/pages/deliveries";
 import { OneDelivery } from "./app/pages/deliveries/one";
+import OpenCameraView from "./app/pages/deliveries/camera";
 import { ItinareryPage } from "./app/pages/deliveries/itinarery";
 
 export default function App() {
@@ -33,9 +34,10 @@ export default function App() {
             <Route path="/deliveries" Component={DeliveriesPage} />
             <Route path="/deliveries/:deliveryId" Component={OneDelivery} />
             <Route
-              path="/deliveries/:deliveryId/itinarery"
-              Component={ItinareryPage}
-            />
+              path="/deliveries/:deliveryId/camera"
+              Component={OpenCameraView} />
+            <Route path="/deliveries/:deliveryId/itinarery"
+              Component={ItinareryPage} />
           </Routes>
 
           <StatusBar />
