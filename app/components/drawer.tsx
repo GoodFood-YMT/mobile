@@ -30,7 +30,11 @@ export function Drawer() {
         </StyledPressable>
 
         <StyledView className="flex flex-col">
-          <DrawerItem text="Profile" icon="user" action={() => navigate("/")} />
+          <DrawerItem
+            text="Profile"
+            icon="user"
+            action={() => navigate("/profile")}
+          />
           <DrawerItem
             text="Logout"
             icon="logout"

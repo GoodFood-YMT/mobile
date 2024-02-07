@@ -11,6 +11,7 @@ import { DeliveriesPage } from "./app/pages/deliveries";
 import { OneDelivery } from "./app/pages/deliveries/one";
 import OpenCameraView from "./app/pages/deliveries/camera";
 import { ItinareryPage } from "./app/pages/deliveries/itinarery";
+import Profile from "./app/pages/profile/profile";
 
 export default function App() {
   return (
@@ -35,9 +36,13 @@ export default function App() {
             <Route path="/deliveries/:deliveryId" Component={OneDelivery} />
             <Route
               path="/deliveries/:deliveryId/camera"
-              Component={OpenCameraView} />
-            <Route path="/deliveries/:deliveryId/itinarery"
-              Component={ItinareryPage} />
+              Component={OpenCameraView}
+            />
+            <Route
+              path="/deliveries/:deliveryId/itinarery"
+              Component={ItinareryPage}
+            />
+            <Route path="/profile" Component={Profile} />
           </Routes>
 
           <StatusBar />
