@@ -12,6 +12,8 @@ import { OneDelivery } from "./app/pages/deliveries/one";
 import OpenCameraView from "./app/pages/deliveries/camera";
 import { ItinareryPage } from "./app/pages/deliveries/itinarery";
 import Profile from "./app/pages/profile/profile";
+import AddAddress from "./app/pages/profile/address/add_address";
+import EditAddress from "./app/pages/profile/address/edit_address";
 
 export default function App() {
   return (
@@ -43,6 +45,9 @@ export default function App() {
               Component={ItinareryPage}
             />
             <Route path="/profile" Component={Profile} />
+            <Route path="/profile/address/add" Component={AddAddress} />
+            <Route path="/profile/address/edit" Component={EditAddress} />
+            <Route path="/profile/orders/:orderId" Component={EditAddress} />
           </Routes>
 
           <StatusBar />

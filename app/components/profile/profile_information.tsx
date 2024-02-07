@@ -9,7 +9,7 @@ export default function PorfileInformation() {
   const accountStore = useAccountStore();
 
   return (
-    <StyledView className="bg-white shadow-sm p-4">
+    <StyledView className="bg-white shadow-sm p-4 mb-2">
       <StyledText className="mb-2 text-lg font-medium tracking-tight">
         Information
       </StyledText>
