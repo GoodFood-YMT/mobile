@@ -123,7 +123,9 @@ export function OneDelivery() {
         </StyledText>
       </StyledView>
 
-      {order.data && <OrderProducts order={order.data} />}
+      {order.data && order.data.products ? (
+        <OrderProducts order={order.data} />
+      ) : null}
 
       {delivery.data?.status === "pending" && (
         <Button
