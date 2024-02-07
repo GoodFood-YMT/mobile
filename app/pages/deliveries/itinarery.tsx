@@ -21,6 +21,10 @@ export function ItinareryPage() {
     navigate(`/deliveries/${deliveryId}`);
   }
 
+  function handleComplete() {
+    navigate(`/deliveries/${deliveryId}/camera`);
+  }
+
   return (
     <StyledView className="relative h-screen w-screen">
       <MapView
@@ -49,7 +53,7 @@ export function ItinareryPage() {
         </StyledView>
       </StyledView>
       <StyledView className="absolute bottom-0 w-screen p-8">
-        <Button title="Complete delivery" />
+        <Button title="Complete delivery" onPress={handleComplete} />
       </StyledView>
     </StyledView>
   );

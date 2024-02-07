@@ -1,12 +1,15 @@
 import { styled } from "nativewind";
-import { ImageBackground, View } from "react-native";
+import { ImageBackground, Pressable, View, Text } from "react-native";
 import { useNavigate, useParams } from "react-router-native";
 import { Button } from "../../components/ui/button";
 import { useCompleteDelivery } from "../../hooks/delivery/use_complete_delivery";
 import Toast from "react-native-toast-message";
+import Icon from "react-native-vector-icons/SimpleLineIcons";
 
 const StyledView = styled(View);
 const StyledImageBackground = styled(ImageBackground);
+const StyledPressable = styled(Pressable);
+const StyledText = styled(Text);
 
 export default function OpenCameraView() {
   const { deliveryId } = useParams();
@@ -37,14 +40,27 @@ export default function OpenCameraView() {
     });
   };
 
+  const handleBack = () => {
+    navigate(`/deliveries/${deliveryId}/itinarery`);
+  };
+
   return (
     <StyledImageBackground
       source={{
-        uri: "https://images-ext-2.discordapp.net/external/RsZns2dNhO_H8CgrlRHauKnw2rbi__5Mo3Q2S6ZYalc/%3Fq%3D80%26w%3D2268%26auto%3Dformat%26fit%3Dcrop%26ixlib%3Drb-4.0.3%26ixid%3DM3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%253D%253D/https/images.unsplash.com/photo-1608686207856-001b95cf60ca?format=webp&width=377&height=670",
+        uri: "https://images.unsplash.com/photo-1617500603321-bcd6286973b7?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       }}
       resizeMode="cover"
       className="h-screen w-screen relative"
     >
+      <StyledView className="absolute w-screen pt-20 px-8 pb-6 bg-white">
+        <StyledPressable
+          onPress={handleBack}
+          className="flex flex-row items-center"
+        >
+          <Icon name="arrow-left" size={16} color="black" />
+          <StyledText className="text-black text-sm ml-2">Back</StyledText>
+        </StyledPressable>
+      </StyledView>
       <StyledView className="absolute bottom-0 w-screen p-8">
         <Button
           title="Complete the delivery"
