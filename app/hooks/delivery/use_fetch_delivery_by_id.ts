@@ -8,6 +8,7 @@ const fetchDeliveryById = async (id: string) => {
     address_id: string;
     delivery_id: string;
     deliverer_id: string;
+    order_id: string;
     created_at: string;
     updated_at: string;
     address: {

@@ -80,6 +80,13 @@ export function PageWrapper({ children }: PropsWithChildren) {
       <StyledView className="h-[100px] bg-white w-screen border-t border-border flex flex-row justify-center items-center pb-2">
         <NavigationButton text="Catalog" icon="grid" route="/restaurants" />
         <NavigationButton text="Cart" icon="basket" route="/cart" />
+        {accountStore.account?.role_id === "deliverer" && (
+          <NavigationButton
+            text="Deliveries"
+            icon="map"
+            route="/deliveries"
+          ></NavigationButton>
+        )}
       </StyledView>
     </StyledView>
   );

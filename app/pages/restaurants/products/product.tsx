@@ -42,7 +42,7 @@ export default function ProductPage() {
       <StyledView className="grid grid-cols-2 bg-white p-4 shadow-sm">
         <StyledImageBackground
           src={getRestaurantImage(product.data!.label)}
-          className="relative aspect-square w-full"
+          className="relative aspect-video w-full"
         />
         <StyledView className="flex flex-col justify-between">
           <StyledView className="flex flex-col gap-2">
