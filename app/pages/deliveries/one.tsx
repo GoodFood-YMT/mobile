@@ -1,4 +1,4 @@
-import { useParams } from "react-router-native";
+import { useNavigate, useParams } from "react-router-native";
 import { PageTitle } from "../../components/page_title";
 import { PageWrapper } from "../../components/page_wrapper";
 import { View, Text } from "react-native";
@@ -19,6 +19,7 @@ const StyledText = styled(Text);
 export function OneDelivery() {
   const { deliveryId } = useParams();
   const accountStore = useAccountStore();
+  const navigate = useNavigate();
 
   const delivery = useFetchDeliveryById(deliveryId ?? "");
   const order = useFetchOrderById(delivery.data?.order_id ?? "");
@@ -53,25 +54,7 @@ export function OneDelivery() {
   const handleCompleteDelivery = () => {
     if (!deliveryId) return;
 
-    completeDelivery.mutate(deliveryId, {
-      onSuccess: () => {
-        Toast.show({
-          type: "success",
-          text1: "Delivery completed",
-          visibilityTime: 3000,
-          autoHide: true,
-        });
-        delivery.refetch();
-      },
-      onError: () => {
-        Toast.show({
-          type: "error",
-          text1: "An error occurred",
-          visibilityTime: 3000,
-          autoHide: true,
-        });
-      },
-    });
+    navigate(`/deliveries/${deliveryId}/camera`);
   };
 
   if (delivery.isLoading || order.isLoading) {
