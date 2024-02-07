@@ -9,6 +9,7 @@ import RestaurantProducts from "./app/pages/restaurants/products/restaurant_prod
 import ProductPage from "./app/pages/restaurants/products/product";
 import { DeliveriesPage } from "./app/pages/deliveries";
 import { OneDelivery } from "./app/pages/deliveries/one";
+import { ItinareryPage } from "./app/pages/deliveries/itinarery";
 
 export default function App() {
   return (
@@ -31,6 +32,10 @@ export default function App() {
 
             <Route path="/deliveries" Component={DeliveriesPage} />
             <Route path="/deliveries/:deliveryId" Component={OneDelivery} />
+            <Route
+              path="/deliveries/:deliveryId/itinarery"
+              Component={ItinareryPage}
+            />
           </Routes>
 
           <StatusBar />
