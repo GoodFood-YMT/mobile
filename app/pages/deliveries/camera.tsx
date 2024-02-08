@@ -57,7 +57,7 @@ export default function OpenCameraView() {
           onPress={handleBack}
           className="flex flex-row items-center"
         >
-          <Icon name="arrow-left" size={16} color="black" />
+          <Icon name="arrow-left" size={16} cor="black" />
           <StyledText className="text-black text-sm ml-2">Back</StyledText>
         </StyledPressable>
       </StyledView>

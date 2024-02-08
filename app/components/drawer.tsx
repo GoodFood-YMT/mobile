@@ -33,7 +33,10 @@ export function Drawer() {
           <DrawerItem
             text="Profile"
             icon="user"
-            action={() => navigate("/profile")}
+            action={() => {
+              navigate("/profile");
+              drawerStore.setOpen(false);
+            }}
           />
           <DrawerItem
             text="Logout"

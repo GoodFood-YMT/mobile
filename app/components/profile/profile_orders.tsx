@@ -22,15 +22,15 @@ export default function ProfileOrders() {
 
   return (
     <StyledView className="bg-white p-4 shadow-sm">
-      <StyledView className="flex h-full w-full flex-col">
+      <StyledView className="flex w-full flex-col">
         <StyledView className="mb-2 flex justify-between">
           <StyledText className="text-lg font-medium tracking-tight">
-            Last Orders
+            Orders
           </StyledText>
         </StyledView>
-        <StyledView className="flex flex-col gap-2">
+        <StyledView className="flex flex-col">
           {orders.data?.pages.map((page) =>
-            page.data.map((order) => <OrderCard order={order} />)
+            page.data.map((order) => <OrderCard key={order.id} order={order} />)
           )}
         </StyledView>
 
@@ -41,9 +41,14 @@ export default function ProfileOrders() {
             </StyledText>
           </StyledView>
         ) : null}
+
         {orders.hasNextPage ? (
           <StyledView className="mt-4 flex items-center justify-center">
-            <Button title="View all orders" textClassName="text-xs"></Button>
+            <Button
+              title="Load more"
+              onPress={() => orders.fetchNextPage()}
+              textClassName="text-xs"
+            ></Button>
           </StyledView>
         ) : null}
       </StyledView>
