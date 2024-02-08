@@ -14,6 +14,7 @@ import { ItinareryPage } from "./app/pages/deliveries/itinarery";
 import Profile from "./app/pages/profile/profile";
 import AddAddress from "./app/pages/profile/address/add_address";
 import EditAddress from "./app/pages/profile/address/edit_address";
+import { Order } from "./app/pages/profile/order";
 
 export default function App() {
   return (
@@ -47,7 +48,7 @@ export default function App() {
             <Route path="/profile" Component={Profile} />
             <Route path="/profile/address/add" Component={AddAddress} />
             <Route path="/profile/address/edit" Component={EditAddress} />
-            <Route path="/profile/orders/:orderId" Component={EditAddress} />
+            <Route path="/profile/orders/:orderId" Component={Order} />
           </Routes>
 
           <StatusBar />
