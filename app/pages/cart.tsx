@@ -8,14 +8,15 @@ import { Image, Text, View } from "react-native";
 import { styled } from "nativewind";
 import { Loader } from "../components/loader";
 import { Button } from "../components/ui/button";
-import { getRestaurantImage } from "../utils/get_restaurant_image";
 import { formatToPrice } from "../utils/format_to_price";
+import { useNavigate } from "react-router-native";
 
 const StyledView = styled(View);
 const StyledText = styled(Text);
 const StyledImage = styled(Image);
 
 export function CartPage() {
+  const navigate = useNavigate();
   const basket = useFetchBasket();
   const clearBasket = useClearBasket();
   const addToBasket = useAddToBasket();
@@ -168,7 +169,10 @@ export function CartPage() {
                 </StyledView>
               </StyledView>
 
-              <Button title="Proceed to checkout" />
+              <Button
+                title="Proceed to checkout"
+                onPress={() => navigate("/checkout")}
+              />
             </StyledView>
           </StyledView>
         </StyledView>

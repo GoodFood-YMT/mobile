@@ -35,7 +35,7 @@ export default function ProfileOrders() {
         </StyledView>
 
         {orders.data?.pages[0].meta.total === 0 ? (
-          <StyledView className="border p-4 shadow-sm">
+          <StyledView className="border border-border p-4 shadow-sm">
             <StyledText className="mb-1 flex items-center justify-between text-base font-medium tracking-tight">
               No orders
             </StyledText>
