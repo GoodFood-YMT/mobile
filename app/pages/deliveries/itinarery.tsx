@@ -1,6 +1,6 @@
 import { styled } from "nativewind";
 import React from "react";
-import { View, Text, Pressable } from "react-native";
+import { View, Text, Pressable, Platform, Linking } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import { Button } from "../../components/ui/button";
 import { useNavigate, useParams } from "react-router-native";
@@ -23,6 +23,23 @@ export function ItinareryPage() {
 
   function handleComplete() {
     navigate(`/deliveries/${deliveryId}/camera`);
+  }
+
+  function handleOpenInMaps() {
+    const scheme = Platform.select({
+      ios: "maps://0,0?q=",
+      android: "geo:0,0?q=",
+    });
+    const latLng = `${delivery.data?.address.lat ?? 0},${
+      delivery.data?.address.lon ?? 0
+    }`;
+    const label = `Order #${delivery.data?.order_id}`;
+    const url = Platform.select({
+      ios: `${scheme}${label}@${latLng}`,
+      android: `${scheme}${latLng}(${label})`,
+    });
+
+    Linking.openURL(url ?? "");
   }
 
   return (
@@ -52,7 +69,12 @@ export function ItinareryPage() {
           </StyledText>
         </StyledView>
       </StyledView>
-      <StyledView className="absolute bottom-0 w-screen p-8">
+      <StyledView className="absolute bottom-0 w-screen p-8 flex flex-col">
+        <Button
+          title="Open in maps"
+          className="mb-2"
+          onPress={handleOpenInMaps}
+        />
         <Button title="Complete delivery" onPress={handleComplete} />
       </StyledView>
     </StyledView>
